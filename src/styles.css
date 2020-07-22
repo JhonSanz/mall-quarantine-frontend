@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.centered {
+    height: 100vh !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

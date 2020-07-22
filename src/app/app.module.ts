@@ -10,6 +10,7 @@ import { VisitorComponent } from './components/visitor/visitor.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MallComponent } from './components/mall/mall.component';
 import { RegistryComponent } from './components/registry/registry.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { RegistryComponent } from './components/registry/registry.component';
     VisitorComponent,
     MallComponent,
     RegistryComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

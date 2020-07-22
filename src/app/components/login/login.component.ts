@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(data).subscribe(
       response => {
         localStorage.setItem('accessToken', response['access'])
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/registry')
       }, error => {
 
       }
