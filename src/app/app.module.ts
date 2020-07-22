@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VisitorComponent } from './components/visitor/visitor.component';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MallComponent } from './components/mall/mall.component';
 import { RegistryComponent } from './components/registry/registry.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -28,7 +28,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    // SweetAlert2Module.forRoot()
 
   ],
   providers: [],
