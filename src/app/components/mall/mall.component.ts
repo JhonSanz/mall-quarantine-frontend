@@ -1,18 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { VisitorService } from 'src/app/services/visitor.service'
+import { MallService } from 'src/app/services/mall.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
 @Component({
-  selector: 'app-visitor',
-  templateUrl: './visitor.component.html',
-  styleUrls: ['./visitor.component.css']
+  selector: 'app-mall',
+  templateUrl: './mall.component.html',
+  styleUrls: ['./mall.component.css']
 })
-export class VisitorComponent implements OnInit {
+export class MallComponent implements OnInit {
 
   constructor(
-    private visitorService: VisitorService,
+    private mallService: MallService,
     private router: Router
   ) { }
 
@@ -21,16 +22,15 @@ export class VisitorComponent implements OnInit {
 
   public visitorForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
   })
 
-  public onRegister(data) {
-    this.visitorService.signupVisitor(data).subscribe(
+  public onCreateMall(data) {
+    this.mallService.createMall(data).subscribe(
       response => {
         Swal.fire({
           icon: 'success',
           title: 'Datos correctos',
-          text: 'Visitante registrado con éxito',
+          text: 'Tienda registrada con éxito',
           onClose: () => location.reload()
         });
       }, error => {
@@ -48,6 +48,7 @@ export class VisitorComponent implements OnInit {
             break
         }
       }
+
     )
   }
 

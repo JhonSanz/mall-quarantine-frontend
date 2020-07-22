@@ -7,19 +7,24 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VisitorComponent } from './components/visitor/visitor.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MallComponent } from './components/mall/mall.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    VisitorComponent
+    VisitorComponent,
+    MallComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
 
   ],
   providers: [],

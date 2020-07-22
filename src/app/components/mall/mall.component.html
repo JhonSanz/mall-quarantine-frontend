@@ -1,0 +1,10 @@
+<form [formGroup]="visitorForm">
+    <div class="">
+        <input formControlName="name" placeholder="Nombre">
+    </div>
+    <div class="">
+        <div>
+            <button (click)="onCreateMall(visitorForm.value)" class="">Registrar</button><br>
+        </div>
+    </div>
+</form>
