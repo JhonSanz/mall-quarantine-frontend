@@ -1,31 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MallService } from 'src/app/services/mall.service';
+import { RegistryService } from 'src/app/services/registry.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import { MallService } from 'src/app/services/mall.service';
 
 @Component({
-  selector: 'app-mall',
-  templateUrl: './mall.component.html',
-  styleUrls: ['./mall.component.css']
+  selector: 'app-registry',
+  templateUrl: './registry.component.html',
+  styleUrls: ['./registry.component.css']
 })
-export class MallComponent implements OnInit {
+export class RegistryComponent implements OnInit {
 
+  public registry: any;
+  public malls: any;
   constructor(
+    private registryService: RegistryService,
     private mallService: MallService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.registryService.getRegistry().subscribe(data => {
+      this.registry = data;
+    })
+    this.mallService.getMalls().subscribe(data => {
+      this.malls = data;
+    })
   }
 
-  public visitorForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-  })
-
-  public onCreateMall(data) {
-    this.mallService.createMall(data).subscribe(
+  public onCreateRegistry(data) {
+    this.registryService.createRegistry(data).subscribe(
       response => {
         Swal.fire({
           icon: 'success',
@@ -50,4 +54,5 @@ export class MallComponent implements OnInit {
       }
     )
   }
+
 }

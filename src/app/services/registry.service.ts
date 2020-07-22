@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { url_api } from './url_api';
 import { HttpClient } from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class MallService {
+export class RegistryService {
 
   private headers: {};
   constructor(private http: HttpClient) {
@@ -16,15 +15,19 @@ export class MallService {
     };
   }
 
-  createMall(mall) {
-    return this.http.post(`${url_api}/api/v1/mall`,
-      { name: mall.name },
+  public createRegistry(registry) {
+    return this.http.post(`${url_api}/api/v1/registry`,
+      {
+        email: registry.email, malls: registry.malls,
+        temperature: registry.temperature
+      },
       { headers: this.headers })
   }
 
-  getMalls(){
-    return this.http.get(`${url_api}/api/v1/mall`,
-    { headers: this.headers })
+  public getRegistry() {
+    return this.http.get(`${url_api}/api/v1/registry`,
+      { headers: this.headers })
   }
+
 
 }

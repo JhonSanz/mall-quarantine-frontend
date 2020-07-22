@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VisitorComponent } from './components/visitor/visitor.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MallComponent } from './components/mall/mall.component';
+import { RegistryComponent } from './components/registry/registry.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MallComponent } from './components/mall/mall.component';
     LoginComponent,
     VisitorComponent,
     MallComponent,
+    RegistryComponent,
   ],
   imports: [
     BrowserModule,
