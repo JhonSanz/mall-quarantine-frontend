@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('accessToken', response['access'])
         this.router.navigateByUrl('/registry')
       }, error => {
-
+        Swal.fire({
+          title: 'Error de inicio de sesión',
+          text: "Contraseña o username inválidos",
+          icon: 'error',
+          onClose: () => window.location.reload()
+        })
       }
     )
   }
