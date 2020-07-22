@@ -1,11 +1,16 @@
 <app-navigation></app-navigation>
-<form [formGroup]="visitorForm">
-    <div class="">
-        <input formControlName="name" placeholder="Nombre">
-    </div>
-    <div class="">
-        <div>
-            <button (click)="onCreateMall(visitorForm.value)" class="">Registrar</button><br>
+<div class="container centered">
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="mallForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Nike">
+                    <small id="emailHelp" class="form-text text-muted">Nombre de la tienda</small>
+                </div>
+                <button [disabled]="!mallForm.valid" (click)="onCreateMall(mallForm.value)" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
-</form>
+</div>

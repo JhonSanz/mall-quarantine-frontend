@@ -20,7 +20,7 @@ export class MallComponent implements OnInit {
   ngOnInit() {
   }
 
-  public visitorForm = new FormGroup({
+  public mallForm = new FormGroup({
     name: new FormControl('', Validators.required),
   })
 
