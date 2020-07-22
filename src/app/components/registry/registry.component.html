@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label for="temperature">Temperatura</label>
-                <input formControlName="temperature" required min="0" max="100" step="0.1" value="36" type="number"
+                <input formControlName="temperature" required min="0" max="100" step="0.1" value="36" type="number" placeholder="36.1"
                     class="form-control" id="temperature" aria-describedby="temperatureHelp">
                 <small id="temperatureHelp" class="form-text text-muted">i.e 36.1 °C</small>
             </div>
@@ -26,7 +26,21 @@
         </div>
         <div class="col-12">
             <button [disabled]="!registryForm.valid" class="btn btn-primary"
-                (click)="onCreateRegistry(registryForm.value)">Registrar Visitante</button>
+                (click)="onCreateRegistry(registryForm.value)">Registrar visita</button>
+        </div>
+    </form>
+    <br>
+    <form [formGroup]="filteringForm" class="row">
+        <div class="col-md-6">
+            <label for="name-filter">Nombre</label>
+            <input formControlName="name" id="name-filter" type="text" class="form-control" placeholder="john">
+        </div>
+        <div class="col-md-6">
+            <label for="temperature-filter">Temperatura</label>
+            <input formControlName="temperature" id="temperature-filter" type="number" min="0" max="100" class="form-control" placeholder="36.1">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" (click)="filterRegistry(filteringForm.value)">Filtrar</button>
         </div>
     </form>
     <br>

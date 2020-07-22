@@ -35,6 +35,11 @@ export class RegistryComponent implements OnInit {
     temperature: new FormControl('', Validators.required),
   })
 
+  public filteringForm = new FormGroup({
+    name: new FormControl('',),
+    temperature: new FormControl('',),
+  })
+
   public onCreateRegistry(data) {
     data["malls"] = data["malls"].map(id => parseInt(id))
     this.registryService.createRegistry(data).subscribe(
@@ -102,6 +107,17 @@ export class RegistryComponent implements OnInit {
         }
       }
     )
+  }
+
+  public filterRegistry(params) {
+    let filters = "";
+    Object.keys(params).forEach(function (key) {
+      if (params[key])
+        filters += `${key}=${params[key]}&`
+    })
+    this.registryService.filterRegistry(filters).subscribe(data => {
+      this.registries = data;
+    })
   }
 
 }

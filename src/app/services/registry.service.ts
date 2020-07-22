@@ -29,5 +29,8 @@ export class RegistryService {
       { headers: this.headers })
   }
 
+  public filterRegistry(params?) {
+    return this.http.get(`${url_api}/api/v1/registry?${params}`, { headers: this.headers })
+  }
 
 }
