@@ -51,7 +51,7 @@ export class RegistryComponent implements OnInit {
                 title: 'Visitante peligroso',
                 text: "Este visitante presenta temperatura alta, se prohíbe su acceso y será restringido una semana",
                 icon: 'warning',
-                onClose: () => location.reload()
+                onClose: () => window.location.reload()
               })
               break
           }
@@ -60,7 +60,7 @@ export class RegistryComponent implements OnInit {
           icon: 'success',
           title: 'Datos correctos',
           text: 'Visitante registrado con éxito',
-          onClose: () => location.reload()
+          onClose: () => window.location.reload()
         });
       }, error => {
         switch (error.status) {
@@ -89,7 +89,7 @@ export class RegistryComponent implements OnInit {
                   title: 'Visitante peligroso',
                   text: "Este visitante presentó temperatura alta días antes",
                   icon: 'warning',
-                  onClose: () => location.reload()
+                  onClose: () => window.location.reload()
                 })
                 break
               default:
@@ -97,7 +97,7 @@ export class RegistryComponent implements OnInit {
                   title: 'Datos inválidos',
                   text: "Hubo un error en el formulario",
                   icon: 'error',
-                  onClose: () => location.reload()
+                  onClose: () => window.location.reload()
                 })
             }
             break

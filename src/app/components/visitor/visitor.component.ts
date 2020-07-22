@@ -31,7 +31,7 @@ export class VisitorComponent implements OnInit {
           icon: 'success',
           title: 'Datos correctos',
           text: 'Visitante registrado con éxito',
-          onClose: () => location.reload()
+          onClose: () => window.location.reload()
         });
       }, error => {
         switch (error.status) {
@@ -43,7 +43,7 @@ export class VisitorComponent implements OnInit {
               icon: 'error',
               title: 'Datos inválidos',
               text: 'Something went wrong!',
-              onClose: () => location.reload()
+              onClose: () => window.location.reload()
             });
             break
         }
