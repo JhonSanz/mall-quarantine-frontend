@@ -1,0 +1,13 @@
+<form [formGroup]="visitorForm">
+    <div class="">
+        <input formControlName="name" placeholder="Nombre">
+    </div>
+    <div class="">
+        <input type="email" formControlName="email" placeholder="Correo electrónico">
+    </div>
+    <div class="">
+        <div>
+            <button (click)="onRegister(visitorForm.value)" class="">INGRESAR</button><br>
+        </div>
+    </div>
+</form>

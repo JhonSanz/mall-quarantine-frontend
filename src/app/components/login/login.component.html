@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm">
+    <div class="">
+        <input formControlName="username" placeholder="Usuario">
+    </div>
+    <div class="">
+        <input type="password" formControlName="password" placeholder="Contraseña">
+    </div>
+    <div class="">
+        <div>
+            <button (click)="onLogin(loginForm.value)" class="">INGRESAR</button><br>
+        </div>
+    </div>
+</form>
