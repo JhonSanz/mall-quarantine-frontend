@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegistryService } from 'src/app/services/registry.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -28,13 +29,32 @@ export class RegistryComponent implements OnInit {
     })
   }
 
+  public registryForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    malls: new FormControl('', Validators.required),
+    temperature: new FormControl('', Validators.required),
+  })
+
   public onCreateRegistry(data) {
+    data["malls"] = data["malls"].map(id => parseInt(id))
     this.registryService.createRegistry(data).subscribe(
       response => {
+        if (response) {
+          switch (response["code"]) {
+            case "dangerous_visitor":
+              Swal.fire({
+                title: 'Visitante peligroso',
+                text: "Este visitante presenta temperatura alta, se prohíbe su acceso y será restringido una semana",
+                icon: 'warning',
+                onClose: () => location.reload()
+              })
+              break
+          }
+        }
         Swal.fire({
           icon: 'success',
           title: 'Datos correctos',
-          text: 'Tienda registrada con éxito',
+          text: 'Visitante registrado con éxito',
           onClose: () => location.reload()
         });
       }, error => {
@@ -42,13 +62,35 @@ export class RegistryComponent implements OnInit {
           case 401:
             this.router.navigateByUrl("/")
             break
+          case 404:
+            switch (error.error.code) {
+              case "visitor_not_found":
+                Swal.fire({
+                  title: 'Error en el formulario',
+                  text: "El visitante no ha sido registrado",
+                  icon: 'error',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Registrar Visitante'
+                }).then((result) => {
+                  if (result.value) {
+                    this.router.navigateByUrl("/")
+                  }
+                })
+                break
+            }
           case 400:
-            Swal.fire({
-              icon: 'error',
-              title: 'Datos inválidos',
-              text: 'Something went wrong!',
-              onClose: () => location.reload()
-            });
+            switch (error.error.code) {
+              case "dangerous_visitor":
+                Swal.fire({
+                  title: 'Visitante peligroso',
+                  text: "Este visitante presentó temperatura alta días antes",
+                  icon: 'warning',
+                  onClose: () => location.reload()
+                })
+                break
+            }
             break
         }
       }

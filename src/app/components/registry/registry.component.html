@@ -1,28 +1,64 @@
 <div class="container">
-    <form class="row">
-        <div class="col">
+    <form [formGroup]="registryForm" class="row">
+        <div class="col-md-6">
             <h5>Información del visitante</h5>
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <input formControlName="email" required type="email" class="form-control" id="email"
+                    placeholder="some@email.com" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted">Correo electrónico</small>
             </div>
             <div class="form-group">
                 <label for="temperature">Temperatura</label>
-                <input min="0" max="100" step="0.1" value="36" type="number" class="form-control" id="temperature"
-                    aria-describedby="temperatureHelp">
-                <small id="temperatureHelp" class="form-text text-muted">X.X °C</small>
+                <input formControlName="temperature" required min="0" max="100" step="0.1" value="36" type="number"
+                    class="form-control" id="temperature" aria-describedby="temperatureHelp">
+                <small id="temperatureHelp" class="form-text text-muted">i.e 36.1 °C</small>
             </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
             <h5>Tiendas a visitar</h5>
             <div class="form-group">
                 <label for="mallsSelector">Selecciona una o mas tiendas</label>
-                <select multiple class="form-control" id="mallsSelector">
-                    <option *ngFor="let mall of malls" value="{{mall.pk}}">{{mall.name}}</option>
+                <select formControlName="malls" required multiple class="form-control" id="mallsSelector">
+                    <option *ngFor="let mall of malls" value={{mall.pk}}>{{mall.name}}</option>
                 </select>
             </div>
         </div>
-        <div class="col">4</div>
+        <div class="col-12">
+            <button class="btn btn-primary" (click)="onCreateRegistry(registryForm.value)">Registrar Visitante</button>
+        </div>
     </form>
+    <br>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Temperatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>john</td>
+                    <td>john@doe.com</td>
+                    <td>36.1 °C</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>john</td>
+                    <td>john@doe.com</td>
+                    <td>36.1 °C</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>john</td>
+                    <td>john@doe.com</td>
+                    <td>36.1 °C</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
