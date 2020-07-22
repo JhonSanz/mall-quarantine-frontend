@@ -25,7 +25,8 @@
             </div>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" (click)="onCreateRegistry(registryForm.value)">Registrar Visitante</button>
+            <button [disabled]="!registryForm.valid" class="btn btn-primary"
+                (click)="onCreateRegistry(registryForm.value)">Registrar Visitante</button>
         </div>
     </form>
     <br>
@@ -35,28 +36,22 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Correo</th>
                     <th scope="col">Temperatura</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Tiendas</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>john</td>
-                    <td>john@doe.com</td>
-                    <td>36.1 °C</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>john</td>
-                    <td>john@doe.com</td>
-                    <td>36.1 °C</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>john</td>
-                    <td>john@doe.com</td>
-                    <td>36.1 °C</td>
+                <tr *ngFor="let registry of registries; let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{registry.visitor.name}}</td>
+                    <td>{{registry.temperature}} °C</td>
+                    <td>{{registry.created_at}}</td>
+                    <td>
+                        <ul>
+                            <li *ngFor="let mall of registry.mall">{{mall.name}}</li>
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         </table>

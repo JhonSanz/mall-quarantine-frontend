@@ -12,7 +12,7 @@ import { MallService } from 'src/app/services/mall.service';
 })
 export class RegistryComponent implements OnInit {
 
-  public registry: any;
+  public registries: any;
   public malls: any;
   constructor(
     private registryService: RegistryService,
@@ -22,7 +22,7 @@ export class RegistryComponent implements OnInit {
 
   ngOnInit() {
     this.registryService.getRegistry().subscribe(data => {
-      this.registry = data;
+      this.registries = data;
     })
     this.mallService.getMalls().subscribe(data => {
       this.malls = data;
@@ -90,6 +90,13 @@ export class RegistryComponent implements OnInit {
                   onClose: () => location.reload()
                 })
                 break
+              default:
+                Swal.fire({
+                  title: 'Datos inválidos',
+                  text: "Hubo un error en el formulario",
+                  icon: 'error',
+                  onClose: () => location.reload()
+                })
             }
             break
         }
